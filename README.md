@@ -8,7 +8,7 @@ For now, it only supports the following formats: tar
 
 1. Clone the git repo: `git clone https://github.com/naav97/exco.git`
 2. Make sure you are on the repo directory: `cd exco/`
-3. Run the following comand: `sudo cp exco /usr/local/bin && chmod +x /usr/local/bin/exco`
+3. Run the following comand: `sudo cp exco /usr/local/bin`
 
 Done! exco is now installed in your computer.
 
