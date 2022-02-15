@@ -1,0 +1,36 @@
+#!/bin/sh
+
+# General sintax
+# exco e <archives> | exco c <archive-name> <files>
+
+extract() {
+    ext="${1##*.}"
+    if [ "$ext" = "tar" ]
+    then
+        $(tar xvf "$1")
+    fi
+}
+
+create() {
+    name="$1"
+    ext="${name##*.}"
+    echo "${@:2}"
+    if [ "$ext" = "tar" ]
+    then
+        $(tar cvf "$1" "${@:2}")
+    fi
+}
+
+if [ "$1" = "e" ]
+then
+    for i in "${@:2}"
+    do
+        if [ "$i" != "e" ]
+        then
+            extract "$i"
+        fi
+    done
+elif [ "$1" = "c" ]
+then
+    create "${@:2}"
+fi
