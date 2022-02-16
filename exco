@@ -7,17 +7,30 @@ extract() {
     ext="${1##*.}"
     if [ "$ext" = "tar" ]
     then
-        $(tar xvf "$1")
+        tar xvf "$1"
+    elif [ "$ext" = "bz2" ]
+    then
+        bzip2 -d -v "$1"
+    else
+        echo "The extention $ext is not supported."
     fi
 }
 
 create() {
-    name="$1"
-    ext="${name##*.}"
-    echo "${@:2}"
+    ext="${1##*.}"
     if [ "$ext" = "tar" ]
     then
-        $(tar cvf "$1" "${@:2}")
+        tar cvf "$1" "${@:2}"
+    elif [ "$ext" = "bz2" ]
+    then
+        if [ "$#" -ge 2 ]
+        then
+            echo "You can only compress une file at a time"
+        else
+            bzip2 -c -z -9 -v "$2" > "$1"
+        fi
+    else
+        echo "The extention $ext is not supported."
     fi
 }
 
@@ -33,4 +46,12 @@ then
 elif [ "$1" = "c" ]
 then
     create "${@:2}"
+else
+    echo """
+    Theres only tow options: e and c.
+    e is for extraction, for example:
+    exco e file.tar
+    c is for creation, for example:
+    exco c archive.tar file.png file.txt
+    """
 fi
