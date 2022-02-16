@@ -12,7 +12,7 @@ extract() {
     then
         bzip2 -d -v "$1"
     else
-        echo "The extention $ext is not supported."
+        echo "The extension $ext is not supported."
     fi
 }
 
@@ -25,12 +25,12 @@ create() {
     then
         if [ "$#" -ge 2 ]
         then
-            echo "You can only compress une file at a time"
+            echo "You can only compress one file at a time"
         else
             bzip2 -c -z -9 -v "$2" > "$1"
         fi
     else
-        echo "The extention $ext is not supported."
+        echo "The extension $ext is not supported."
     fi
 }
 
@@ -48,7 +48,7 @@ then
     create "${@:2}"
 else
     echo """
-    Theres only tow options: e and c.
+    There's only two options: e and c.
     e is for extraction, for example:
     exco e file.tar
     c is for creation, for example:
