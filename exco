@@ -11,6 +11,9 @@ extract() {
     elif [ "$ext" = "bz2" ]
     then
         bzip2 -d -v "$1"
+    elif [ "$ext" = "gz" ]
+    then
+        gzip -d -v "$1"
     else
         echo "The extension $ext is not supported."
     fi
@@ -23,11 +26,19 @@ create() {
         tar cvf "$1" "${@:2}"
     elif [ "$ext" = "bz2" ]
     then
-        if [ "$#" -ge 2 ]
+        if [ "$#" -gt 2 ]
         then
             echo "You can only compress one file at a time"
         else
             bzip2 -c -z -9 -v "$2" > "$1"
+        fi
+    elif [ "$ext" = "gz" ]
+    then
+        if [ "$#" -gt 2 ]
+        then
+            echo "You can only compress one file at a time"
+        else
+            gzip -c -9 -v "$2" > "$1"
         fi
     else
         echo "The extension $ext is not supported."
