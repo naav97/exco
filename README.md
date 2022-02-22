@@ -2,7 +2,7 @@
 
 exco is a shell script to manage archives inspired by [patool](https://github.com/wummel/patool).
 
-For now, it only supports the following formats: tar, bz2
+For now, it only supports the following formats: tar, bz2, gz
 
 ## Installation
 
@@ -11,6 +11,11 @@ For now, it only supports the following formats: tar, bz2
 3. Run the following comand: `sudo cp exco /usr/local/bin`
 
 Done! exco is now installed in your computer.
+
+## Updating
+
+1. Make sure you are on the repo directory
+2. Run the update.sh file `./update.sh`
 
 ## Usage
 
