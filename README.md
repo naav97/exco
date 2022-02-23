@@ -2,7 +2,7 @@
 
 exco is a shell script to manage archives inspired by [patool](https://github.com/wummel/patool).
 
-For now, it only supports the following formats: tar, bz2, gz
+For now, it only supports the following formats: tar, bz2, gz, 7z
 
 ## Installation
 

@@ -14,6 +14,9 @@ extract() {
     elif [ "$ext" = "gz" ]
     then
         gzip -d -v "$1"
+    elif [ "$ext" = "7z" ]
+    then
+        7z x "$1"
     else
         echo "The extension $ext is not supported."
     fi
@@ -40,6 +43,9 @@ create() {
         else
             gzip -c -9 -v "$2" > "$1"
         fi
+    elif [ "$ext" = "7z" ]
+    then
+        7z a "$1" "${@:2}"
     else
         echo "The extension $ext is not supported."
     fi
