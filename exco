@@ -17,6 +17,9 @@ extract() {
     elif [ "$ext" = "7z" ]
     then
         7z x "$1"
+    elif [ "$ext" = "rar" ]
+    then
+        unrar x "$1"
     else
         echo "The extension $ext is not supported."
     fi
@@ -46,6 +49,9 @@ create() {
     elif [ "$ext" = "7z" ]
     then
         7z a "$1" "${@:2}"
+    elif [ "$ext" = "rar" ]
+    then
+        rar a "$1" "${@:2}"
     else
         echo "The extension $ext is not supported."
     fi
