@@ -8,6 +8,12 @@ extract() {
     if [ "$ext" = "tar" ]
     then
         tar xvf "$1"
+    elif [ "$ext" = "tgz" ]
+    then
+        tar zxvf "$1"
+    elif [ "$ext" = "tbz2" ]
+    then
+        tar jxvf "$1"
     elif [ "$ext" = "bz2" ]
     then
         bzip2 -d -v "$1"
@@ -30,6 +36,12 @@ create() {
     if [ "$ext" = "tar" ]
     then
         tar cvf "$1" "${@:2}"
+    elif [ "$ext" = "tgz" ]
+    then
+        tar cvzf "$1" "${@:2}"
+    elif [ "$ext" = "tbz2" ]
+    then
+        tar cvjf "$1" "${@:2}"
     elif [ "$ext" = "bz2" ]
     then
         if [ "$#" -gt 2 ]
