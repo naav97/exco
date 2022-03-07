@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# General sintax
-# exco e <archives> | exco c <archive-name> <files>
-
 extract() {
     ext="${1##*.}"
     if [ "$ext" = "tar" ]
@@ -75,7 +72,32 @@ create() {
     fi
 }
 
-if [ "$1" = "e" ]
+list() {
+    ext="${1##*.}"
+    if [ "$ext" = "tar" ]
+    then
+        tar tvf "$1"
+    elif [ "$ext" = "tgz" ]
+    then
+        tar ztvf "$1"
+    elif [ "$ext" = "tbz2" ]
+    then
+        tar jtvf "$1"
+    elif [ "$ext" = "7z" ]
+    then
+        7z l "$1"
+    elif [ "$ext" = "rar" ]
+    then
+        rar l "$1"
+    elif [ "$ext" = "zip" ]
+    then
+        zip -sf "$1"
+    else
+        echo "The extension $ext is not supported."
+    fi
+}
+
+if [ "$1" = "e" -o "$1" = "x" -o "$1" = "extract" ]
 then
     for i in "${@:2}"
     do
@@ -84,15 +106,20 @@ then
             extract "$i"
         fi
     done
-elif [ "$1" = "c" ]
+elif [ "$1" = "c" -o "$1" = "create" ]
 then
     create "${@:2}"
+elif [ "$1" = "l" -o "$1" = "list" ]
+then
+    list "$2"
 else
     echo """
-    There's only two options: e and c.
+    There's three options: e, c and l.
     e is for extraction, for example:
     exco e file.tar
     c is for creation, for example:
     exco c archive.tar file.png file.txt
+    l is for listing, for example:
+    exco l file.tar
     """
 fi

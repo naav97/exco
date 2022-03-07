@@ -21,6 +21,12 @@ Done! exco is now installed in your computer.
 
 To extract archives:
 `exco e <file1> <file2> ... <fileN>`
+You can also use `x` and `extract` instead of e
 
 To create an archive:
 `exco c <archive-name> <file1> <file2> ... <fileN>`
+You can also use `create` instead of c
+
+To list the contents of an archive:
+`exco l <archive-name>`
+You can also use `list` instead of l
